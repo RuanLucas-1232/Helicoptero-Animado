@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelicopteroAnimado</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background: radial-gradient(#137e9f69, #19b2d500);
+            height: 100vh;
+            animation: neblina 10s infinite;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .helicoptero {
+            width: 11rem;
+            height: 22rem;
+            border-radius: 50%;
+            background: #928F8F;
+            position: relative;
+            top: 9rem;
+        }
+
+        .posicaoHelicoptero {
+            width: 11rem;
+            height: 22rem;
+            border-radius: 50%;
+            background: #928F8F;
+            position: relative;
+            top: -37rem;
+            transition-duration: 3s;
+            transition-timing-function: linear;
+        }
+
+        div.helicoptero p {
+            opacity: 0;
+        }
+
+        div.posicaoHelicoptero p {
+            display: block;
+            position: absolute;
+            top: 41rem;
+            left: -28px;
+            font-size: 37px;
+            color: #060812;
+            text-transform: uppercase;
+            font-weight: bold;
+            width: max-content;
+            font-family: cursive;
+            opacity: 1;
+            transition: opacity 2s;
+        }
+
+        span.frente {
+            display: block;
+            width: 11rem;
+            height: 22rem;
+            border-radius: 50%;
+            border-bottom: 241px solid #928f8f;
+            background: #2c2020;
+        }
+
+        span.superior {
+            display: block;
+            width: 11rem;
+            height: 22rem;
+            border-radius: 50%;
+            position: absolute;
+            top: 0px;
+            border-top: 83px solid;
+            background: radial-gradient(#898787 20%, #8d8d8d, #bfbfbf);
+        }
+
+        span.helice1 {
+            background: #8d8b8bad;
+            width: 2rem;
+            height: 18rem;
+            position: absolute;
+            top: 7rem;
+            transform: matrix(1, 0, 1, 1, 67, -62);
+            animation: helice1 248ms infinite;
+        }
+
+        span.helice2 {
+            background: #8d8b8bad;
+            width: 2rem;
+            height: 18rem;
+            position: absolute;
+            top: 7rem;
+            transform: matrix(1, 0, 1, -1, 67, -62);
+            animation: helice1 248ms infinite;
+        }
+
+        span.circulo {
+            background: #000000;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            position: absolute;
+            top: 11rem;
+            left: 69px;
+        }
+
+        span.cauda {
+            display: block;
+            width: 3rem;
+            height: 17rem;
+            background: linear-gradient(172deg, #8b8b8b, #9c9c9c);
+            position: absolute;
+            bottom: -201px;
+            right: 64px;
+        }
+
+        span.pontaCauda {
+            display: block;
+            width: 80px;
+            height: 50px;
+            position: relative;
+            top: 177px;
+            left: 47px;
+            background: radial-gradient(#9f9f9f, #909090 114%);
+            border-radius: 50%;
+        }
+
+        @keyframes helice1 {
+            25% {
+                transform: matrix(1, 0, 0, 1, 67, -62);
+            }
+
+            50% {
+                transform: matrix(11, 0, 0, .08, 67, -62);
+            }
+
+            100% {
+                transform: matrix(1, 0, 1, -1, 67, -62);
+            }
+        }
+
+        @keyframes helice2 {
+            25% {
+                transform: matrix(1, 0, 0, 1, 67, -62);
+            }
+
+            50% {
+                transform: matrix(11, 0, 0, .08, 67, -62);
+            }
+
+            100% {
+                transform: matrix(1, 0, 1, 1, 67, -62);
+            }
+        }
+
+        @keyframes neblina {
+            25% {
+                background: radial-gradient(#137e9f69, #19b2d500);
+            }
+
+            50% {
+                background: radial-gradient(#137e9fb3, #19b2d500);
+
+            }
+
+            100% {
+                background: linear-gradient(43deg, #1472B7, #b3dfff);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="helicoptero">
+            <p>Bem Vindo!!!</p>
+            <div class="coluna">
+                <span class="frente"></span>
+                <span class="superior"></span>
+                <span class="helice1"></span>
+                <span class="helice2"></span>
+                <span class="circulo"></span>
+                <span class="cauda"></span>
+                <span class="pontaCauda"></span>
+            </div>
+        </div>
+
+        <!-- Para usar no css
+        transform: matrix(rotateY,shewY,shewX,rotateX,translateX,translateY);
+        rotateY: gira elemento no eixo Y 
+        rotateX: gira elemento no eixo X 
+        shewX: mantém elemento intacto no eixo x e estica no Y 
+        shewY: mantém elemento intacto no eixo Y e estica no X 
+        TranslateX: move o elemento no X 
+        TranslateY: move o elemento no Y
+        
+        Testar com: transform: matrix(1,0,0,-1,-12,-82);
+        -->
+    </div>
+    <script>
+        function delay() {   
+            var $h = document.querySelector(".helicoptero");
+            if ($h) {
+                $h.className = "posicaoHelicoptero";
+            } else {
+                $h = document.querySelector("div.posicaoHelicoptero");
+                $h.className = "helicoptero";
+            }
+            return $h;
+        }
+
+        // Usa a função delay automaticamente depois de 7000 milesegundos (7s)
+        var intervaloTempo = window.setInterval(delay, 7000)
+    </script>
+</body>
+
+</html>
